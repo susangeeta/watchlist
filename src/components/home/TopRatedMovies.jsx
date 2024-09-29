@@ -4,10 +4,7 @@ import Slider from "react-slick";
 import { fetchSliderMovies } from "../../utils";
 
 const TopRatedMovies = () => {
-  // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1);
-  // eslint-disable-next-line no-unused-vars
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [data, setData] = useState([]);
   const sliderRef = useRef(null);
 
@@ -21,35 +18,41 @@ const TopRatedMovies = () => {
     })();
   }, [page]);
 
-  console.log(data);
-
   const settings = useMemo(() => {
     return {
       dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 6,
-      slidesToScroll: 1,
+      slidesToScroll: 5,
       pauseOnHover: false,
       arrows: false,
-      beforeChange: (current, next) => setCurrentIndex(next),
     };
   }, []);
 
-  const handlePrevSlide = () => sliderRef.current?.slickPrev();
-  const handleNextSlide = () => sliderRef.current?.slickNext();
-
   return (
     <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-16">
-      <div className=" w-full flex flex-col gap-8 custom-container ">
-        <div className="flex justify-between bg-[#282841] p-3 rounded-md ">
-          <h1 className="text-lg font-semibold text-white">Top Rated Movies</h1>
+      <div className=" w-full flex flex-col gap-6 custom-container ">
+        <div className="flex justify-between">
+          <h1 className="text-white">Top Rated Movies</h1>
 
           <div className="flex gap-3">
-            <button onClick={handlePrevSlide}>
+            <button
+              disabled={page === 1}
+              onClick={() => {
+                sliderRef.current?.slickPrev();
+                if (page >= 1) setPage((pre) => pre - 1);
+              }}
+            >
               <FaLessThan className="text-white text-sm" />
             </button>
-            <button onClick={handleNextSlide}>
+            <button
+              disabled={page === 100}
+              onClick={() => {
+                sliderRef.current?.slickNext();
+                if (page >= 1) setPage((pre) => pre + 1);
+              }}
+            >
               <FaGreaterThan className="text-white text-sm" />
             </button>
           </div>
@@ -58,7 +61,7 @@ const TopRatedMovies = () => {
         <Slider ref={sliderRef} {...settings}>
           {data?.map((item, i) => (
             <div key={i} className="">
-              <div className="!h-64 relative !w-[95%] rounded-xl !overflow-hidden">
+              <div className="!h-64 relative !w-11/12 rounded-xl !overflow-hidden">
                 <img
                   src={item.Poster}
                   className="w-full h-full !object-cover"
@@ -71,9 +74,9 @@ const TopRatedMovies = () => {
               </div>
               <div>
                 <div className="flex justify-between text-white p-3 items-center">
-                  <div className="flex flex-col">
-                    <h1 className=" 2xl:text-sm">{item.Title}</h1>
-                  </div>
+                  <h1 className="text-sm truncate w-full">
+                    {item.Title.slice(0, 40)}
+                  </h1>
                 </div>
               </div>
             </div>

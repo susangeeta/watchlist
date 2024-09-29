@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import Slider from "react-slick";
+import Header from "./Header";
 
 const Hero = () => {
   const herosectionArr = [
@@ -61,6 +62,7 @@ const Hero = () => {
 
   return (
     <div className="w-full overflow-hidden">
+      <Header />
       <Slider {...settings}>
         {herosectionArr?.map((item, i) => (
           <section className="h-[35rem] w-full" key={i}>
@@ -85,7 +87,7 @@ const Hero = () => {
                     <button className="bg-white font-medium py-2 rounded-md w-fit px-4">
                       Add to wishlist
                     </button>
-                    <div className="bg-white/10 text-white font-medium rounded-md px-6 border-l-4 border-white py-2">
+                    <div className="bg-white/10 text-white font-medium rounded-r-md px-6 border-l-4 border-white py-2">
                       U/A 16+
                     </div>
                   </div>

@@ -1,9 +1,8 @@
-import { Header, Hero, MovieCard, TopRatedMovies } from "../components/home";
+import { Hero, MovieCard, TopRatedMovies } from "../components/home";
 
 const Home = () => {
   return (
     <div>
-      <Header />
       <Hero />
       <TopRatedMovies />
       <MovieCard />
