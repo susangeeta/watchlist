@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+html,
+body {
+  font-family: "Inter", sans-serif;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth !important;
+}
+
+@layer components {
+  .custom-container {
+    @apply max-w-[1240px] mx-auto;
+  }
+}
+
+.hero-overlay {
+  background-image: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 0.85) 8%,
+    rgba(0, 0, 0, 0.8465) 15.67%,
+    rgba(0, 0, 0, 0.8361) 23.33%,
+    rgba(0, 0, 0, 0.8187) 31%,
+    rgba(0, 0, 0, 0.7944) 38.67%,
+    rgba(0, 0, 0, 0.7632) 46.33%,
+    rgba(0, 0, 0, 0.725) 54%,
+    rgba(0, 0, 0, 0.6868) 61.67%,
+    rgba(0, 0, 0, 0.6556) 69.33%,
+    rgba(0, 0, 0, 0.6312) 77%,
+    rgba(0, 0, 0, 0.6139) 84.67%,
+    rgba(0, 0, 0, 0.6035) 92.33%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.hero-line-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(33, 13, 22, 1) 16%,
+    rgba(184, 40, 105, 1),
+    rgba(229, 9, 20, 1),
+    rgba(184, 40, 105, 1),
+    rgba(33, 13, 22, 1) 84%
+  );
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.rating-button {
+  padding: 8px 19px;
+  border-radius: 100px;
+  color: #fff;
+  font-weight: bold;
+
+  border: 1px solid transparent;
+  text-transform: capitalize;
+}
+
+.slider-container {
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.slider-item {
+  min-width: 300px;
+}
+
+.slider-item.active {
+  flex-shrink: 0;
+}
+
+.login-button {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.email-input {
+  background: rgba(22, 22, 22, 0.7);
+  border-radius: 0.25rem;
+  border-width: 0.0625rem;
+  border-color: rgba(128, 128, 128, 0.7);
+}
