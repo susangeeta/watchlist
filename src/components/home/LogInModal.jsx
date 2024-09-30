@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const Modal = ({ setOpenModal }) => {
   const navigation = useNavigate();
   const [error, setError] = useState("");
@@ -33,12 +34,12 @@ const Modal = ({ setOpenModal }) => {
         </div>
         <form onSubmit={handleSubmit} className="flex gap-5 flex-col">
           <div className="flex gap-3 flex-col">
-            <h1 className="text-white">Email *</h1>
+            <h1 className="text-white">Email address *</h1>
             <input
               placeholder="Enter your email..."
               type="text"
               required
-              className="border rounded-md border-slate-300 outline-none px-4 py-2 text-black w-full"
+              className="border rounded-md border-slate-300 outline-none px-4 py-3 text-black w-full"
             />
             {error && <p className="leading-0 text-red-500 text-sm">{error}</p>}
           </div>

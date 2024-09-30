@@ -1,11 +1,17 @@
-import { Hero, MovieCard, TopRatedMovies } from "../components/home";
+import {
+  Hero,
+  TopRatedEpisode,
+  TopRatedMovies,
+  TopRatedSeries,
+} from "../components/home";
 
 const Home = () => {
   return (
     <div>
       <Hero />
       <TopRatedMovies />
-      <MovieCard />
+      <TopRatedSeries />
+      <TopRatedEpisode />
     </div>
   );
 };

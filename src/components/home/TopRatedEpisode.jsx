@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
-import { fetchSliderMovies } from "../../utils";
+import { fetchEpisodeSlider } from "../../utils";
 
-const TopRatedMovies = () => {
+const TopRatedEpisode = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   const [lodaing, setLoading] = useState(false);
@@ -13,13 +13,14 @@ const TopRatedMovies = () => {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const result = await fetchSliderMovies(page);
+      const result = await fetchEpisodeSlider(page);
       setLoading(false);
       if (result?.Response && result?.Search) {
         setData(result.Search);
       }
     })();
   }, [page]);
+  console.log(data);
 
   const settings = useMemo(() => {
     return {
@@ -34,10 +35,10 @@ const TopRatedMovies = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-20">
+    <div className="flex items-center gap-8 flex-col justify-center bg-secondary pb-14   ">
       <div className=" w-full flex flex-col gap-6 custom-container ">
         <div className="flex justify-between">
-          <h1 className="text-white">Top Rated Movies</h1>
+          <h1 className="text-white">Top Rated Episode</h1>
 
           <div className="flex gap-3">
             <button
@@ -66,8 +67,8 @@ const TopRatedMovies = () => {
             lodaing ? (
               <>loading</>
             ) : (
-              <div key={i} className="group ">
-                <div className="!h-64 relative cursor-pointer !w-11/12 rounded-xl !overflow-hidden">
+              <div key={i} className="group">
+                <div className="!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
                   <img
                     src={item.Poster}
                     className="w-full h-full !object-cover "
@@ -97,4 +98,4 @@ const TopRatedMovies = () => {
   );
 };
 
-export default TopRatedMovies;
+export default TopRatedEpisode;
