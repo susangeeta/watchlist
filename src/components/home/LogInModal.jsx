@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 
 const Modal = ({ setOpenModal }) => {
-  const navigation = useNavigate();
+  const { setUser } = useAuth();
   const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
@@ -14,9 +14,9 @@ const Modal = ({ setOpenModal }) => {
     if (!emailRegex.test(email)) {
       return setError("Invalid Email");
     }
-
+    setUser({ email });
+    console.log(email);
     setError("");
-    navigation(`/?email=${email}`);
     setOpenModal(false);
   };
 

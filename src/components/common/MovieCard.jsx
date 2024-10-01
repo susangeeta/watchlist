@@ -2,10 +2,11 @@
 import { CiBookmark } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useMovie } from "../../contexts";
+import { useAuth, useMovie } from "../../contexts";
 
 const MovieCard = ({ item }) => {
   const { updateBulkMovieDetails, movies, updateMovieDetails } = useMovie();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const isMovieExist = movies.some((elm) => elm.imdbID === item.imdbID);
 
@@ -39,21 +40,22 @@ const MovieCard = ({ item }) => {
             View Details
           </h2>
         </div>
-        {isMovieExist ? (
-          <div
-            onClick={() => handleListSession(item.imdbID)}
-            className="bg-white hover:text-primary absolute rounded-full top-3 right-3 text-primary h-8 w-8 flex items-center justify-center  "
-          >
-            <MdDelete className="text-xl" />
-          </div>
-        ) : (
-          <div
-            onClick={() => handleListSession(item.imdbID)}
-            className="bg-primary hover:bg-white hover:text-primary absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  "
-          >
-            <CiBookmark className="text-xl" />
-          </div>
-        )}
+        {user?.email &&
+          (isMovieExist ? (
+            <div
+              onClick={() => handleListSession(item.imdbID)}
+              className="bg-white hover:text-primary absolute rounded-full top-3 right-3 text-primary h-8 w-8 flex items-center justify-center  "
+            >
+              <MdDelete className="text-xl" />
+            </div>
+          ) : (
+            <div
+              onClick={() => handleListSession(item.imdbID)}
+              className="bg-primary hover:bg-white hover:text-primary absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  "
+            >
+              <CiBookmark className="text-xl" />
+            </div>
+          ))}
       </div>
       <div>
         <div className="flex justify-between text-white p-3 items-center">

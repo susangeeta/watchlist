@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 import { useScrollPosition } from "../../hooks";
 import SearchBar from "../common/SearchBar";
 import Modal from "./LogInModal";
@@ -8,8 +9,9 @@ import Modal from "./LogInModal";
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
   const scrollPoistion = useScrollPosition();
-  const { search, pathname } = useLocation();
+  const { pathname } = useLocation();
   const [searchText, setSearchText] = useState("");
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const handelChange = () => {
@@ -70,7 +72,7 @@ const Header = () => {
                 My List
               </h2>
             </div>
-            {search ? (
+            {user?.email ? (
               <div className="">
                 <img
                   src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
