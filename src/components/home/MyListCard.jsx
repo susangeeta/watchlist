@@ -68,7 +68,7 @@ const TopRatedEpisode = () => {
         <div className="grid grid-cols-2  lg:grid-cols-4 gap-4">
           {wishListCardArr?.map((item, i) => (
             <div key={i} className="group ">
-              <div className=" h-64 md:!h-40 relative cursor-pointer !w-11/12 rounded-xl !overflow-hidden">
+              <div className=" h-44 md:!h-40 relative cursor-pointer !w-11/12 rounded-xl !overflow-hidden">
                 <a href={`${`/details/id=${item.id}`}`}>
                   <img
                     src={item.image}

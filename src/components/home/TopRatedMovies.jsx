@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CiBookmark } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
 import { fetchSliderMovies } from "../../utils";
 import CradSkeleton from "../common/CradSkeleton";
+import MovieCard from "../common/MovieCard";
 
 const TopRatedMovies = () => {
   const [page, setPage] = useState(1);
@@ -119,31 +119,9 @@ const TopRatedMovies = () => {
                   <CradSkeleton />
                 </div>
               ) : (
-                <>
-                  <div className=" h-64 md:!h-64 relative cursor-pointer !w-11/12 rounded-xl !overflow-hidden">
-                    <a href={`${`/details/id=${item.id}`}`}>
-                      <img
-                        src={
-                          item.Poster !== "N/A"
-                            ? item.Poster
-                            : "https://lumiere-a.akamaihd.net/v1/images/p_encanto_homeent_22359_4892ae1c.jpeg" // Default image
-                        }
-                        className="w-full h-full !object-cover"
-                        alt="Poster"
-                      />
-                    </a>
-                    <div className="bg-primary hover:bg-white hover:text-primary  absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  ">
-                      <CiBookmark className="text-xl text-white hover:text-primary  " />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex justify-between text-white p-3 items-center">
-                      <h1 className="text-sm truncate w-full">
-                        {item.Title.slice(0, 40)}
-                      </h1>
-                    </div>
-                  </div>
-                </>
+                <div>
+                  <MovieCard item={item} />
+                </div>
               )}
             </div>
           ))}
