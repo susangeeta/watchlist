@@ -31,7 +31,11 @@ const MovieDetailsHero = () => {
       <ResponsiveNavBar />
       <div>
         {loading ? (
-          <div className="h-[28rem] lg:h-[35rem] w-full animate-pulse bg-slate-500"></div>
+          <div className="h-[28rem] lg:h-[35rem] w-full animate-pulse bg-slate-500 flex items-center justify-center">
+            <h1 className="text-primary text-3xl font-semibold">
+              Data Loading.....
+            </h1>
+          </div>
         ) : (
           <section className="h-[28rem] lg:h-[35rem] w-full">
             <div
@@ -46,7 +50,7 @@ const MovieDetailsHero = () => {
             >
               <div className="z-10 absolute inset-0 w-full h-full bg-gradient-to-r from-black/95 via-black/60 to-black/10 bg-blend-overlay"></div>
               <div className="grid  md:grid-cols-2 custom-container z-20">
-                <div className="flex flex-col gap-2 lg:gap-3 md:gap-3 justify-center p-4 md:p-0">
+                <div className="flex flex-col gap-2  lg:gap-3 md:gap-3 justify-center p-4 md:p-0">
                   <div className="flex items-center gap-2 text-white mb-2">
                     <div className="px-2 py-1 bg-primary w-fit rounded-md">
                       {movieDetails?.imdbRating !== "N/A"
@@ -55,7 +59,7 @@ const MovieDetailsHero = () => {
                     </div>
                     <p>On IMDb</p>
                   </div>
-                  <h1 className="text-white/90 font-semibold text-2xl md:text-2xl">
+                  <h1 className="text-white/90 font-semibold text-base md:text-2xl">
                     {movieDetails?.Title}
                   </h1>
                   <p className="text-white/90 text-sm md:text-base leading-6">

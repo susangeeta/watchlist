@@ -87,7 +87,7 @@ const SearchBar = ({ searchText }) => {
                 </div>
 
                 <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
-                  <p className="font-medium text-sm truncate">{data?.Title}</p>
+                  <p className="font-medium text-sm">{data?.Title}</p>
                   <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
                     {data?.Year}
                   </div>
