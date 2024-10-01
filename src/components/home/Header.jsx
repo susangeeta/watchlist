@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 import { useLocation } from "react-router-dom";
 import { useScrollPosition } from "../../hooks";
 import SearchBar from "../common/SearchBar";
@@ -10,6 +11,10 @@ const Header = () => {
   const { search, pathname } = useLocation();
   const [searchText, setSearchText] = useState("");
 
+  const handelChange = () => {
+    setSearchText("");
+  };
+
   return (
     <div
       className={`py-5 fixed w-full top-0 z-[999] hidden lg:block transition-all duration-200 ease-linear ${
@@ -20,24 +25,31 @@ const Header = () => {
     >
       <div className="custom-container">
         <div className="grid grid-cols-10 w-full items-center">
-          <h1 className="text-white/90 italic text-3xl font-semibold col-span-3">
-            WatchList
+          {" "}
+          <h1 className="text-white/90 cursor-pointer italic text-3xl font-semibold col-span-3">
+            <a href="/">WatchList</a>
           </h1>
-
           <div className=" flex flex-col items-center justify-center col-span-4 relative">
             <input
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
               type="text"
-              className={`border outline-none px-5 border-secondary/30 transition-all duration-200 ease-linear py-2.5 text-sm text-white/80 w-full rounded-3xl bg-primary-light `}
+              className={`border outline-none px-5 border-secondary/30 transition-all duration-200 ease-linear py-2.5 text-sm text-white/80 w-full rounded-lg bg-primary-light `}
               placeholder="Search...."
             />
+            {searchText && (
+              <div
+                onClick={handelChange}
+                className="absolute top-3 right-5 cursor-pointer "
+              >
+                <RxCross2 className="text-white text-xl " />
+              </div>
+            )}
 
             <div className="absolute left-0 right-0 top-full">
               <SearchBar searchText={searchText} />
             </div>
           </div>
-
           <div className="flex gap-8 items-center justify-end col-span-3">
             <div className="flex gap-8">
               <a href="/">

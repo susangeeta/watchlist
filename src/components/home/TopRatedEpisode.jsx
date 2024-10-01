@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CiHeart } from "react-icons/ci";
+import { CiBookmark } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
 import { fetchEpisodeSlider } from "../../utils";
+import CradSkeleton from "../common/CradSkeleton";
 
 const TopRatedEpisode = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [lodaing, setLoading] = useState(false);
+
+  const [loading, setLoading] = useState(false);
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -115,27 +116,34 @@ const TopRatedEpisode = () => {
         <Slider ref={sliderRef} {...settings}>
           {data?.map((item, i) => (
             <div key={i} className="group">
-              <div className="!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
-                <img
-                  src={item.Poster}
-                  className="w-full h-full !object-cover "
-                />
-                <div className="bg-primary absolute top-0 right-0 text-white px-2 py-1">
-                  <h1 className="text-sm">{item.Year}</h1>
+              {loading ? (
+                <div className="pr-4">
+                  <CradSkeleton />
                 </div>
-                <div className="absolute h-full w-full bg-black/75 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                  <button className="rounded-full h-9 w-9 bg-primary flex items-center transition-all duration-500 ease-in-out justify-center hover:bg-white">
-                    <CiHeart className="text-xl text-white hover:text-primary" />
-                  </button>
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-white p-3 items-center">
-                  <h1 className="text-sm truncate w-full">
-                    {item.Title.slice(0, 40)}
-                  </h1>
-                </div>
-              </div>
+              ) : (
+                <>
+                  <div className="!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
+                    <img
+                      src={
+                        item.Poster !== "N/A"
+                          ? item.Poster
+                          : "https://lumiere-a.akamaihd.net/v1/images/p_encanto_homeent_22359_4892ae1c.jpeg" // Default image
+                      }
+                      className="object-cover h-full w-full"
+                    />
+                    <div className="bg-primary hover:bg-white hover:text-primary  absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  ">
+                      <CiBookmark className="text-xl text-white hover:text-primary  " />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-white p-3 items-center">
+                      <h1 className="text-sm truncate w-full">
+                        {item.Title.slice(0, 40)}
+                      </h1>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </Slider>

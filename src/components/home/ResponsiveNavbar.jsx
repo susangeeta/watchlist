@@ -19,7 +19,7 @@ const ResponsiveNavBar = () => {
             className="text-white text-xl"
           />
           <h1 className="text-white italic text-base font-semibold col-span-3">
-            WatchList
+            <a href="/">WatchList</a>
           </h1>
         </div>
 
@@ -41,7 +41,10 @@ const ResponsiveNavBar = () => {
         <div className="scrollBarNone py flex h-full w-full flex-col gap-2 overflow-scroll bg-white p-3">
           <div className="z-[200] flex w-full justify-between bg-white">
             <a href="/">
-              <h1 className="text-black  text-xl font-semibold">WatchList</h1>
+              <h1 className="text-black  text-xl font-semibold">
+                {" "}
+                <a href="/">WatchList</a>
+              </h1>
             </a>
             <div className="flex gap-1 lg:order-2">
               <div onClick={() => setOpen(false)} className="">

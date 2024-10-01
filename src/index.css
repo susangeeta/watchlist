@@ -11,6 +11,11 @@ body {
   margin: 0;
   scroll-behavior: smooth !important;
 }
+:root {
+  --bg-color-light: rgb(247, 247, 249);
+  --text-color-light: #4c4e64de;
+  --skeleton-bg-light: rgb(241 245 249);
+}
 
 @layer components {
   .custom-container {
@@ -88,7 +93,3 @@ body {
   border-width: 0.0625rem;
   border-color: rgba(128, 128, 128, 0.7);
 }
-
-/* .slick-next {
-  right: 0;
-} */

@@ -1,14 +1,21 @@
-import { MovieCard } from "../components/common";
-import { Hero } from "../components/home";
-import Footer from "../components/home/Footer";
+import {
+  Footer,
+  Hero,
+  TopRatedEpisode,
+  TopRatedMovies,
+  TopRatedSeries,
+} from "../components/home";
 
 const Home = () => {
   return (
     <div>
       <Hero />
-      <MovieCard title="Top Rated Movies" />
+      <TopRatedMovies />
+      <TopRatedSeries />
+      <TopRatedEpisode />
+      {/* <MovieCard title="Top Rated Movies" />
       <MovieCard title="Top Rated Series" />
-      <MovieCard title="Top Rated Episode" />
+      <MovieCard title="Top Rated Episode" /> */}
       <Footer />
     </div>
   );

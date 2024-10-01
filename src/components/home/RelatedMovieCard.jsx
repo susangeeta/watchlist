@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { CiBookmark } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
-import { fetchSeriesSlider } from "../../utils";
+import { fetchSliderMovies } from "../../utils";
 import CradSkeleton from "../common/CradSkeleton";
 
 const TopRatedMovies = () => {
@@ -15,14 +15,13 @@ const TopRatedMovies = () => {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const result = await fetchSeriesSlider(page);
+      const result = await fetchSliderMovies(page);
       setLoading(false);
       if (result?.Response && result?.Search) {
         setData(result.Search);
       }
     })();
   }, [page]);
-  console.log(data);
 
   const settings = useMemo(() => {
     return {
@@ -82,12 +81,11 @@ const TopRatedMovies = () => {
       ],
     };
   }, []);
-
   return (
-    <div className="flex items-center gap-8 flex-col justify-center bg-secondary pb-4 lg:pb-8">
+    <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-4 lg:py-8">
       <div className=" w-full flex flex-col gap-4 lg:gap-6 p-2 custom-container ">
         <div className="flex justify-between">
-          <h1 className="text-white">Top Rated Series</h1>
+          <h1 className="text-white">Related Movies</h1>
 
           <div className=" hidden md:flex gap-3">
             <button
@@ -122,7 +120,7 @@ const TopRatedMovies = () => {
                 </div>
               ) : (
                 <>
-                  <div className="!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
+                  <div className=" h-44 lg:!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
                     <img
                       src={
                         item.Poster !== "N/A"
@@ -131,7 +129,7 @@ const TopRatedMovies = () => {
                       }
                       className="object-cover h-full w-full"
                     />
-                    <div className="bg-primary hover:bg-white hover:text-primary  absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  ">
+                    <div className="bg-primary hover:bg-white hover:text-primary transition-all duration-200 ease-in-out absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  ">
                       <CiBookmark className="text-xl text-white hover:text-primary  " />
                     </div>
                   </div>

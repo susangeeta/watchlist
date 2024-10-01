@@ -1,5 +1,6 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const SearchBar = ({ searchText }) => {
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -47,34 +48,42 @@ const SearchBar = ({ searchText }) => {
               type === elm.value
                 ? "bg-secondary/50 border-white/30"
                 : "bg-secondary/30 border-transparent"
-            } transition-all duration-150 ease-linear rounded-3xl cursor-pointer text-sm border text-white px-4 font-light py-2`}
+            } transition-all duration-150 ease-linear rounded-lg cursor-pointer text-sm border text-white px-4 font-light py-2`}
           >
             {elm?.title}
           </div>
         ))}
       </div>
 
-      {!searchData.length ? (
-        <div className="w-full h-[calc(100%-5rem)] flex items-center text-white font-semibold justify-center">
-          No Data Found
-        </div>
+      {loading || !searchData.length ? (
+        loading ? (
+          <div className="w-full h-[calc(100%-5rem)] flex items-center text-white font-semibold justify-center">
+            Loading...
+          </div>
+        ) : (
+          <div className="w-full h-[calc(100%-5rem)] flex items-center text-white font-semibold justify-center">
+            No Data Found
+          </div>
+        )
       ) : (
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 p-2">
           {searchData.map((data) => (
             <div
               key={data?.Title}
-              className="flex gap-3  bg-secondary/40 rounded-md p-2 cursor-pointer"
+              className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >
               <div>
-                <img
-                  src={data?.Poster}
-                  alt="Poster"
-                  className="w-20 h-16 rounded-md object-cover"
-                />
+                <a href={`${`/details/id=${data.id}`}`}>
+                  <img
+                    src={data?.Poster}
+                    alt="Poster"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                </a>
               </div>
 
-              <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-2">
-                <p className="font-medium truncate">{data?.Title}</p>
+              <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
+                <p className="font-medium text-sm truncate">{data?.Title}</p>
                 <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
                   {data?.Year}
                 </div>
