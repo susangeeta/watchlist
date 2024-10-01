@@ -124,7 +124,7 @@ const TopRatedMovies = () => {
           <Slider ref={sliderRef} {...settings}>
             {data?.map((item, i) => (
               <div key={i}>
-                <a href={`details/id`}>
+                <a href={`details/${item.imdbID}`}>
                   <MovieCard item={item} />
                 </a>
               </div>

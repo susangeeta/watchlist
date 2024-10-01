@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
 import { fetchSliderMovies } from "../../utils";
-import CradSkeleton from "../common/CradSkeleton";
 import MovieCard from "../common/MovieCard";
 
 const TopRatedMovies = () => {
@@ -110,24 +110,24 @@ const TopRatedMovies = () => {
             </button>
           </div>
         </div>
-        {loading ? (
+        {/* {loading ? (
           <div className=" grid grid-cols-6 gap-6">
             {[...Array(6)]?.map(() => (
               // eslint-disable-next-line react/jsx-key
               <CradSkeleton />
             ))}
           </div>
-        ) : (
-          <Slider ref={sliderRef} {...settings}>
-            {data?.map((item, i) => (
-              <div key={i}>
-                <a href={`details/id`}>
-                  <MovieCard item={item} />
-                </a>
-              </div>
-            ))}
-          </Slider>
-        )}
+        ) : ( */}
+        <Slider ref={sliderRef} {...settings}>
+          {data?.map((item, i) => (
+            <div key={i}>
+              <a href={`details/${item.imdbID}`}>
+                <MovieCard item={item} />
+              </a>
+            </div>
+          ))}
+        </Slider>
+        {/* )} */}
       </div>
     </div>
   );

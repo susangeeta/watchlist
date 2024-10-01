@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <List />,
   },
   {
-    path: "/details/:imdbId",
+    path: "/details/:id",
     element: <MovieDetails />,
   },
 ]);
