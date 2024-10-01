@@ -1,30 +1,14 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useScrollPosition } from "../../hooks";
+import SearchBar from "../common/SearchBar";
 import Modal from "./LogInModal";
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [input, setInput] = useState("");
   const scrollPoistion = useScrollPosition();
-  const { search } = useLocation();
-  const location = useLocation();
-
-  const fetchData = (value) => {
-    fetch(`https://omdbapi.com/?apikey=36e67ebf&s=disney&type=movie&page=2}`)
-      .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((item) => {
-          value && item && item.Title.toLowercase().includes(value);
-        });
-        console.log(results);
-      });
-  };
-
-  const handelChange = (value) => {
-    setInput(value);
-    fetchData(value);
-  };
+  const { search, pathname } = useLocation();
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div
@@ -40,25 +24,26 @@ const Header = () => {
             WatchList
           </h1>
 
-          <div className=" flex flex-col items-center justify-center col-span-4 ">
+          <div className=" flex flex-col items-center justify-center col-span-4 relative">
             <input
-              value={input}
-              onChange={(e) => handelChange(e.target.value)}
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
               type="text"
-              className={`border outline-none px-5 border-secondary/30 transition-all duration-200 ease-linear py-2.5 text-sm text-white/80 w-full rounded-3xl bg-primary-light ${
-                scrollPoistion > 0 ? "" : "opacity-0"
-              }`}
+              className={`border outline-none px-5 border-secondary/30 transition-all duration-200 ease-linear py-2.5 text-sm text-white/80 w-full rounded-3xl bg-primary-light `}
               placeholder="Search...."
             />
+
+            <div className="absolute left-0 right-0 top-full">
+              <SearchBar searchText={searchText} />
+            </div>
           </div>
-          {/* <SearchBar /> */}
 
           <div className="flex gap-8 items-center justify-end col-span-3">
             <div className="flex gap-8">
               <a href="/">
                 <h2
                   className={`text-white cursor-pointer text-sm ${
-                    location.pathname === "/" ? "font-semibold" : "font-light"
+                    pathname === "/" ? "font-semibold" : "font-light"
                   }`}
                 >
                   Home
@@ -67,9 +52,7 @@ const Header = () => {
               <a href="my-list">
                 <h2
                   className={`text-white cursor-pointer text-sm ${
-                    location.pathname === "/my-list"
-                      ? "font-semibold"
-                      : "font-light"
+                    pathname === "/my-list" ? "font-semibold" : "font-light"
                   }`}
                 >
                   My List
