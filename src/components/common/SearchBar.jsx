@@ -5,6 +5,7 @@ const SearchBar = ({ searchText }) => {
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState("movie");
+
   const defferedSearch = useDeferredValue(searchText);
 
   useEffect(() => {
@@ -76,22 +77,22 @@ const SearchBar = ({ searchText }) => {
               key={data?.Title}
               className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >
-              <div>
-                <a href={`${`/details/id=${data.id}`}`}>
+              <a href={`details/${data.imdbID}`} className="flex gap-3">
+                <div>
                   <img
                     src={data?.Poster}
                     alt="Poster"
                     className="w-12 h-12 rounded-full object-cover"
                   />
-                </a>
-              </div>
-
-              <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
-                <p className="font-medium text-sm truncate">{data?.Title}</p>
-                <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
-                  {data?.Year}
                 </div>
-              </div>
+
+                <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
+                  <p className="font-medium text-sm truncate">{data?.Title}</p>
+                  <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
+                    {data?.Year}
+                  </div>
+                </div>
+              </a>
             </div>
           ))}
         </div>

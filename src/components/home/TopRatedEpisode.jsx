@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
 import { fetchEpisodeSlider } from "../../utils";
-import CradSkeleton from "../common/CradSkeleton";
+import { Skeleton } from "../common";
 import MovieCard from "../common/MovieCard";
 
 const TopRatedEpisode = () => {
@@ -113,25 +113,21 @@ const TopRatedEpisode = () => {
           </div>
         </div>
 
-        {loading ? (
-          <div className=" grid grid-cols-6 gap-6">
-            {[...Array(6)]?.map(() => (
-              // eslint-disable-next-line react/jsx-key
-              <CradSkeleton />
-            ))}
-          </div>
-        ) : (
-          <Slider ref={sliderRef} {...settings}>
-            {data?.map((item, i) => (
-              <div key={i}>
-                <a href={`details/${item.imdbID}`}>
-                  {console.log(item.imdbID)}
-                  <MovieCard item={item} />
-                </a>
-              </div>
-            ))}
-          </Slider>
-        )}
+        <Slider ref={sliderRef} {...settings}>
+          {loading
+            ? Array.from({ length: settings.slidesToShow }).map((_, index) => (
+                <div key={index} className="pr-3">
+                  <Skeleton />
+                </div>
+              ))
+            : data.map((item, i) => (
+                <div key={i}>
+                  <a href={`details/${item.imdbID}`}>
+                    <MovieCard item={item} />
+                  </a>
+                </div>
+              ))}
+        </Slider>
       </div>
     </div>
   );

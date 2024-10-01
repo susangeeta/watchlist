@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { CiBookmark } from "react-icons/ci";
 
-const MovieCard = ({ item }) => {
+const MovieCard = ({ item, onAddToWishlist }) => {
   return (
     <motion.section
       viewport={{ once: true }}
@@ -21,7 +21,10 @@ const MovieCard = ({ item }) => {
           }
           className="object-cover h-full w-full"
         />
-        <div className="bg-primary hover:bg-white hover:text-primary  absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  ">
+        <div
+          onClick={() => onAddToWishlist(item)}
+          className="bg-primary hover:bg-white hover:text-primary  absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  "
+        >
           <CiBookmark className="text-xl text-white hover:text-primary  " />
         </div>
       </div>
