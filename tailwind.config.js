@@ -15,5 +15,30 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        ".scrollbar-thin": {
+          "scrollbar-width": "thin",
+        },
+        ".scrollbar-thumb-rounded": {
+          "scrollbar-color": "#888 #333",
+          "scrollbar-track-color": "#333",
+        },
+        ".scrollbar-thumb-rounded::-webkit-scrollbar": {
+          width: "8px",
+        },
+        ".scrollbar-thumb-rounded::-webkit-scrollbar-thumb": {
+          "background-color": "#888",
+          "border-radius": "4px",
+        },
+        ".scrollbar-thumb-rounded::-webkit-scrollbar-thumb:hover": {
+          "background-color": "#555",
+        },
+        ".scrollbar-thumb-rounded::-webkit-scrollbar-track": {
+          "background-color": "#333",
+        },
+      });
+    },
+  ],
 };

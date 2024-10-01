@@ -1,9 +1,16 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 import { CiBookmark } from "react-icons/ci";
 
 const MovieCard = ({ item }) => {
   return (
-    <>
+    <motion.section
+      viewport={{ once: true }}
+      initial={{ scale: 1, opacity: 0, y: 300 }}
+      whileInView={{ scale: 1, opacity: 1, y: 0 }}
+      transition={{ delay: item * 0.09, duration: 1 }}
+      exit={{ scale: 0, opacity: 0, y: 20 }}
+    >
       {" "}
       <div className="!h-64 relative !w-11/12 rounded-xl cursor-pointer !overflow-hidden">
         <img
@@ -23,7 +30,7 @@ const MovieCard = ({ item }) => {
           <h1 className="text-sm truncate w-full">{item.Title.slice(0, 40)}</h1>
         </div>
       </div>
-    </>
+    </motion.section>
   );
 };
 

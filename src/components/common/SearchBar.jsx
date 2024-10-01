@@ -37,7 +37,11 @@ const SearchBar = ({ searchText }) => {
     <div
       className={`bg-primary-light/70 backdrop-blur-md w-full transition-all duration-200 ease-linear rounded-md ${
         searchText ? "h-96 p3" : "h-0"
-      } ${searchData.length > 4 ? "overflow-y-scroll" : "overflow-hidden"}`}
+      } ${
+        searchData.length > 4
+          ? "overflow-y-scroll scrollbar-thin scrollbar-thumb-rounded"
+          : "overflow-hidden"
+      }`}
     >
       <div className="flex items-center gap-3 p-3">
         {dataType.map((elm) => (
