@@ -113,23 +113,24 @@ const TopRatedEpisode = () => {
           </div>
         </div>
 
-        <Slider ref={sliderRef} {...settings}>
-          {data?.map((item, i) => (
-            <div key={i} className="group">
-              {loading ? (
-                <div className="pr-4">
-                  <CradSkeleton />
-                </div>
-              ) : (
-                <>
-                  <div>
-                    <MovieCard item={item} />
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-        </Slider>
+        {loading ? (
+          <div className=" grid grid-cols-6 gap-6">
+            {[...Array(6)]?.map(() => (
+              // eslint-disable-next-line react/jsx-key
+              <CradSkeleton />
+            ))}
+          </div>
+        ) : (
+          <Slider ref={sliderRef} {...settings}>
+            {data?.map((item, i) => (
+              <div key={i}>
+                <a href={`details/id`}>
+                  <MovieCard item={item} />
+                </a>
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );

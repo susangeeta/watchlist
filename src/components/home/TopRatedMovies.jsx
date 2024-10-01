@@ -9,7 +9,7 @@ const TopRatedMovies = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
 
-  const [lodaing, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const sliderRef = useRef(null);
 
   useEffect(() => {
@@ -110,22 +110,24 @@ const TopRatedMovies = () => {
             </button>
           </div>
         </div>
-
-        <Slider ref={sliderRef} {...settings}>
-          {data?.map((item, i) => (
-            <div key={i} className="group ">
-              {lodaing ? (
-                <div className="pr-2">
-                  <CradSkeleton />
-                </div>
-              ) : (
-                <div>
+        {loading ? (
+          <div className=" grid grid-cols-6 gap-6">
+            {[...Array(6)]?.map(() => (
+              // eslint-disable-next-line react/jsx-key
+              <CradSkeleton />
+            ))}
+          </div>
+        ) : (
+          <Slider ref={sliderRef} {...settings}>
+            {data?.map((item, i) => (
+              <div key={i}>
+                <a href={`details/id`}>
                   <MovieCard item={item} />
-                </div>
-              )}
-            </div>
-          ))}
-        </Slider>
+                </a>
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );
