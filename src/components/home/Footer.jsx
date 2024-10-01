@@ -8,8 +8,7 @@ const Footer = () => {
           </h1>
         </div>
         <div className="text-white flex gap-3 cursor-pointer">
-          <h1>Home</h1>
-          <h2>My List</h2>
+          <p>CopyRight</p>
         </div>
       </div>
     </div>

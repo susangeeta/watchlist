@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { CiHeart } from "react-icons/ci";
+import { CiBookmark } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
 import { fetchEpisodeSlider } from "../../utils";
 
-const TopRatedEpisode = () => {
+// eslint-disable-next-line react/prop-types
+const TopRatedEpisode = ({ title }) => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
   // eslint-disable-next-line no-unused-vars
@@ -84,9 +85,9 @@ const TopRatedEpisode = () => {
 
   return (
     <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-4  lg:py-6  ">
-      <div className=" w-full flex flex-col  gap-4 lg:gap-6 p-2 custom-container ">
+      <div className=" w-full flex flex-col  gap-4 lg:gap-3 p-2 custom-container ">
         <div className="flex justify-between">
-          <h1 className="text-white">Top Rated Episode</h1>
+          <h1 className="text-white">{title}</h1>
 
           <div className=" hidden md:flex gap-3">
             <button
@@ -123,9 +124,9 @@ const TopRatedEpisode = () => {
                 <div className="bg-primary absolute top-0 right-0 text-white px-2 py-1">
                   <h1 className="text-sm">{item.Year}</h1>
                 </div>
-                <div className="absolute h-full w-full bg-black/75 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                  <button className="rounded-full h-9 w-9 bg-primary flex items-center transition-all duration-500 ease-in-out justify-center hover:bg-white">
-                    <CiHeart className="text-xl text-white hover:text-primary" />
+                <div className="absolute h-full w-full bg-black/75 p-2 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <button className="rounded-full h-8 w-8 bg-primary flex items-center transition-all duration-500 ease-in-out justify-center hover:bg-white">
+                    <CiBookmark className="text-lg text-white hover:text-primary" />
                   </button>
                 </div>
               </div>

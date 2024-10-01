@@ -40,7 +40,7 @@ const Header = () => {
             WatchList
           </h1>
 
-          <div className="relative flex items-center justify-center col-span-4 ">
+          <div className=" flex flex-col items-center justify-center col-span-4 ">
             <input
               value={input}
               onChange={(e) => handelChange(e.target.value)}
@@ -51,6 +51,7 @@ const Header = () => {
               placeholder="Search...."
             />
           </div>
+          {/* <SearchBar /> */}
 
           <div className="flex gap-8 items-center justify-end col-span-3">
             <div className="flex gap-8">

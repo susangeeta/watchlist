@@ -1,10 +1,9 @@
-import { Header, Hero, MyListCard } from "../components/home";
+import { Header, MyListCard } from "../components/home";
 
 const List = () => {
   return (
     <div>
       <Header />
-      <Hero />
       <MyListCard />
     </div>
   );
