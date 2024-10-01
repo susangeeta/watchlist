@@ -1,4 +1,5 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const SearchBar = ({ searchText }) => {
@@ -15,7 +16,6 @@ const SearchBar = ({ searchText }) => {
         `https://omdbapi.com/?apikey=36e67ebf&s=${defferedSearch}&type=${type}&page=1}`
       );
       const result = await response.json();
-      console.log(result);
       setLoading(false);
 
       if (result?.Response && result?.Search) {
@@ -77,7 +77,7 @@ const SearchBar = ({ searchText }) => {
               key={data?.Title}
               className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >
-              <a href={`details/${data.imdbID}`} className="flex gap-3">
+              <Link href={`details/${data.imdbID}`} className="flex gap-3">
                 <div>
                   <img
                     src={data?.Poster}
@@ -92,7 +92,7 @@ const SearchBar = ({ searchText }) => {
                     {data?.Year}
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </div>

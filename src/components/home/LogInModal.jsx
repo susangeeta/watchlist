@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line react/prop-types
 const Modal = ({ setOpenModal }) => {
   const navigation = useNavigate();
   const [error, setError] = useState("");

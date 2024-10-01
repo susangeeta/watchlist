@@ -1,93 +1,32 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useRef, useState } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
 import Slider from "react-slick";
-import { fetchSeriesSlider } from "../../utils";
+import { fetchSliderMovies } from "../../utils";
 import { Skeleton } from "../common";
 import MovieCard from "../common/MovieCard";
 
-const TopRatedMovies = () => {
-  const [page, setPage] = useState(1);
+const MovieSlider = ({ heading, page, setPage, settings }) => {
   const [data, setData] = useState([]);
-
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef(null);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const result = await fetchSeriesSlider(page);
+      const result = await fetchSliderMovies(page);
       setLoading(false);
       if (result?.Response && result?.Search) {
         setData(result.Search);
       }
     })();
   }, [page]);
-  console.log(data);
-
-  const settings = useMemo(() => {
-    return {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 6,
-      slidesToScroll: 5,
-      pauseOnHover: false,
-      arrows: false,
-      responsive: [
-        {
-          breakpoint: 1536,
-          settings: {
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 6,
-            slidesToScroll: 1,
-            infinite: true,
-            arrows: false,
-          },
-        },
-
-        {
-          breakpoint: 1280,
-          settings: {
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            infinite: true,
-            arrows: false,
-          },
-        },
-        {
-          breakpoint: 760,
-          settings: {
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-            arrows: false,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            infinite: true,
-            arrows: false,
-          },
-        },
-      ],
-    };
-  }, []);
 
   return (
-    <div className="flex items-center gap-8 flex-col justify-center bg-secondary pb-4 lg:pb-8">
+    <div className="flex items-center gap-8 flex-col justify-center">
       <div className=" w-full flex flex-col gap-4 lg:gap-6 p-2 custom-container ">
         <div className="flex justify-between">
-          <h1 className="text-white">Top Rated Series</h1>
+          <h1 className="text-white">{heading}</h1>
 
           <div className=" hidden md:flex gap-3">
             <button
@@ -112,9 +51,10 @@ const TopRatedMovies = () => {
             </button>
           </div>
         </div>
+
         <Slider ref={sliderRef} {...settings}>
           {loading
-            ? Array.from({ length: settings.slidesToShow }).map((_, index) => (
+            ? Array.from({ length: 6 }).map((_, index) => (
                 <div key={index} className="pr-3">
                   <Skeleton />
                 </div>
@@ -122,7 +62,7 @@ const TopRatedMovies = () => {
             : data.map((item, i) => (
                 <div key={i}>
                   <a href={`details/${item.imdbID}`}>
-                    <MovieCard item={item} />
+                    <MovieCard item={item} index={i} />
                   </a>
                 </div>
               ))}
@@ -132,4 +72,4 @@ const TopRatedMovies = () => {
   );
 };
 
-export default TopRatedMovies;
+export default MovieSlider;
