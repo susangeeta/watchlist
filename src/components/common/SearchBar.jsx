@@ -47,7 +47,7 @@ const SearchBar = ({ searchText }) => {
       <div className="flex items-center gap-3 p-3">
         {dataType.map((elm) => (
           <div
-            key={elm?.imdbID}
+            key={elm?.id}
             onClick={() => setType(elm?.value)}
             className={`${
               type === elm.value

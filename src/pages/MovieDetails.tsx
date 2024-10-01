@@ -1,11 +1,11 @@
 import React from "react";
-import { Footer, MovieDetailsHero, RelatedMovieCard } from "../components/home";
+import { Footer, MovieDetailsHero } from "../components/home";
 
 const MovieDetails = () => {
   return (
     <div>
       <MovieDetailsHero />
-      <RelatedMovieCard />
+      {/* <RelatedMovieCard /> */}
       <Footer />
     </div>
   );

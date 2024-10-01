@@ -3,5 +3,4 @@ export { default as Header } from "./Header";
 export { default as Hero } from "./Hero";
 export { default as LogInModal } from "./LogInModal";
 export { default as MovieDetailsHero } from "./MovieDetailsHero";
-export { default as MyListCard } from "./MyListCard";
 export { default as ResponsiveNavBar } from "./ResponsiveNavbar";

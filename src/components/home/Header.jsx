@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useScrollPosition } from "../../hooks";
 import SearchBar from "../common/SearchBar";
 import Modal from "./LogInModal";
@@ -10,6 +10,7 @@ const Header = () => {
   const scrollPoistion = useScrollPosition();
   const { search, pathname } = useLocation();
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
   const handelChange = () => {
     setSearchText("");
@@ -52,24 +53,22 @@ const Header = () => {
           </div>
           <div className="flex gap-8 items-center justify-end col-span-3">
             <div className="flex gap-8">
-              <a href="/">
-                <h2
-                  className={`text-white cursor-pointer text-sm ${
-                    pathname === "/" ? "font-semibold" : "font-light"
-                  }`}
-                >
-                  Home
-                </h2>
-              </a>
-              <a href="my-list">
-                <h2
-                  className={`text-white cursor-pointer text-sm ${
-                    pathname === "/my-list" ? "font-semibold" : "font-light"
-                  }`}
-                >
-                  My List
-                </h2>
-              </a>
+              <h2
+                onClick={() => navigate("/")}
+                className={`text-white cursor-pointer text-sm ${
+                  pathname === "/" ? "font-semibold" : "font-light"
+                }`}
+              >
+                Home
+              </h2>
+              <h2
+                onClick={() => navigate("my-list")}
+                className={`text-white cursor-pointer text-sm ${
+                  pathname === "/my-list" ? "font-semibold" : "font-light"
+                }`}
+              >
+                My List
+              </h2>
             </div>
             {search ? (
               <div className="">

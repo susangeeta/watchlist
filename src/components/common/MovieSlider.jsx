@@ -59,13 +59,7 @@ const MovieSlider = ({ heading, page, setPage, settings }) => {
                   <Skeleton />
                 </div>
               ))
-            : data.map((item, i) => (
-                <div key={i}>
-                  <a href={`details/${item.imdbID}`}>
-                    <MovieCard item={item} index={i} />
-                  </a>
-                </div>
-              ))}
+            : data.map((item, i) => <MovieCard item={item} key={i} />)}
         </Slider>
       </div>
     </div>

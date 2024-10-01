@@ -1,10 +1,19 @@
-import { Header, MyListCard } from "../components/home";
+import { MovieCard } from "../components/common";
+import { Header } from "../components/home";
+import { useMovie } from "../contexts";
 
 const List = () => {
+  const { movies } = useMovie();
   return (
-    <div className="bg-secondary min-h-[55rem] flex items-center justify-center">
+    <div className="w-full bg-secondary min-h-screen">
       <Header />
-      <MyListCard />
+      <div className="w-full custom-container pt-32">
+        <div className="grid grid-cols-6 gap-5">
+          {movies.map((item, i) => (
+            <MovieCard item={item} key={i} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
