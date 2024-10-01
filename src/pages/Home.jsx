@@ -4,6 +4,7 @@ import {
   TopRatedMovies,
   TopRatedSeries,
 } from "../components/home";
+import Footer from "../components/home/Footer";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <TopRatedMovies />
       <TopRatedSeries />
       <TopRatedEpisode />
+      <Footer />
     </div>
   );
 };

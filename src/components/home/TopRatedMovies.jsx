@@ -1,14 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
-import Slider from "react-slick";
+import { MovieDetailsModal } from ".";
 import { fetchSliderMovies } from "../../utils";
 
 const TopRatedMovies = () => {
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [lodaing, setLoading] = useState(false);
   const sliderRef = useRef(null);
+
+  const handelOpen = (id) => {
+    setOpenModal(true);
+    setData(id);
+  };
 
   useEffect(() => {
     (async () => {
@@ -30,22 +37,70 @@ const TopRatedMovies = () => {
       slidesToScroll: 5,
       pauseOnHover: false,
       arrows: false,
+      responsive: [
+        {
+          breakpoint: 1536,
+          settings: {
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: false,
+          },
+        },
+
+        {
+          breakpoint: 1280,
+          settings: {
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 760,
+          settings: {
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: false,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            arrows: false,
+          },
+        },
+      ],
     };
   }, []);
 
   return (
-    <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-20">
-      <div className=" w-full flex flex-col gap-6 custom-container ">
+    <div className="flex items-center gap-8 flex-col justify-center bg-secondary py-4 lg:py-8">
+      <div className=" w-full flex flex-col gap-4  lg:gap-6 p-2 custom-container ">
         <div className="flex justify-between">
           <h1 className="text-white">Top Rated Movies</h1>
 
-          <div className="flex gap-3">
+          <div className=" hidden md:flex gap-3">
             <button
               disabled={page === 1}
               onClick={() => {
                 sliderRef.current?.slickPrev();
                 if (page >= 1) setPage((pre) => pre - 1);
               }}
+              className="bg-[#222028] h-9 w-9 rounded-md flex items-center justify-center text-white"
             >
               <FaLessThan className="text-white text-sm" />
             </button>
@@ -55,44 +110,57 @@ const TopRatedMovies = () => {
                 sliderRef.current?.slickNext();
                 if (page >= 1) setPage((pre) => pre + 1);
               }}
+              className="bg-[#222028] h-9 w-9 rounded-md flex items-center justify-center text-white"
             >
               <FaGreaterThan className="text-white text-sm" />
             </button>
           </div>
         </div>
 
-        <Slider ref={sliderRef} {...settings}>
-          {data?.map((item, i) =>
-            lodaing ? (
-              <>loading</>
-            ) : (
-              <div key={i} className="group ">
-                <div className="!h-64 relative cursor-pointer !w-11/12 rounded-xl !overflow-hidden">
-                  <img
-                    src={item.Poster}
-                    className="w-full h-full !object-cover "
-                  />
-                  <div className="bg-primary absolute top-0 right-0 text-white px-2 py-1">
-                    <h1 className="text-sm">{item.Year}</h1>
-                  </div>
-                  <div className="absolute h-full w-full bg-black/75 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                    <button className="rounded-full h-9 w-9 bg-primary flex items-center transition-all duration-500 ease-in-out justify-center hover:bg-white">
-                      <CiHeart className="text-xl text-white hover:text-primary" />
-                    </button>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-white p-3 items-center">
-                    <h1 className="text-sm truncate w-full">
-                      {item.Title.slice(0, 40)}
-                    </h1>
-                  </div>
+        {/* <Slider ref={sliderRef} {...settings} className=""> */}
+        <div className="grid grid-cols-5 gap-5">
+          {data?.map((item, i) => (
+            <div
+              key={i}
+              className="  bg-white/90 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] w-full rounded-lg p-2 overflow-hidden "
+            >
+              <div className=" group h-64 md:!h-64 relative cursor-pointer  !overflow-hidden">
+                <img
+                  src={item.Poster}
+                  className="w-full h-full !object-cover rounded-lg overflow-hidden "
+                />
+                {/* <div className="bg-primary absolute top-0 right-0 text-white px-2 py-1 overflow-hidden">
+                  <h1 className="text-sm">{item.Year}</h1>
+                </div> */}
+                <div className="absolute h-full w-full bg-black/75 rounded-lg flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                  <button className="rounded-full h-9 w-9 bg-primary flex items-center transition-all duration-500 ease-in-out justify-center hover:bg-white">
+                    <CiHeart className="text-xl text-white hover:text-primary" />
+                  </button>
                 </div>
               </div>
-            )
-          )}
-        </Slider>
+              <div className="">
+                <div className="flex flex-col gap-2 text-black p-2 items-center">
+                  <h1 className="text-sm truncate w-full">
+                    {item.Title.slice(0, 40)}
+                  </h1>
+                  <button
+                    onClick={() => handelOpen(i)}
+                    className=" text-sm border border-primary text-primary px-3 py-2 rounded-md truncate hover:bg-primary hover:text-white"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* </Slider> */}
       </div>
+      {openModal && (
+        <>
+          <MovieDetailsModal setOpenModal={setOpenModal} data={data} />
+        </>
+      )}
     </div>
   );
 };
