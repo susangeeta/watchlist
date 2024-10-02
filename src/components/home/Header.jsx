@@ -103,18 +103,21 @@ const Header = () => {
                 />
 
                 {userModal && (
-                  <div
-                    onClick={() => setUserModal(false)}
-                    className="absolute right-0 top-16 w-56 bg-white rounded-lg shadow-lg py-2"
-                  >
-                    <div className="p-2 flex items-center gap-3">
-                      <img
-                        src={avatra}
-                        className="h-8 cursor-pointer w-8 rounded-full"
-                      />
-                      <h1 className="text-sm font-semibold truncate w-full">
-                        {user?.email}
-                      </h1>
+                  <div className="absolute right-0 top-11 w-72 bg-white rounded-lg shadow-lg py-2">
+                    <div className="p-3 relative items-center flex justify-between gap-3">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={avatra}
+                          className="h-8 cursor-pointer w-8 rounded-full"
+                        />
+                        <h1 className="text-sm font-semibold">{user?.email}</h1>
+                      </div>
+                      <div
+                        onClick={() => setUserModal(false)}
+                        className=" absolute -top-1 right-2 cursor-pointer"
+                      >
+                        <RxCross2 className="text-base" />
+                      </div>
                     </div>
                     <div className="border-t border-gray-200 p-1 "></div>
                     <div className=" p-2">

@@ -27,7 +27,7 @@ const Modal = ({ setOpenModal }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-secondary/80   md:w-[33rem] px-8 py-10 gap-5 md:gap-12 flex flex-col rounded-[1rem] border border-primary-light"
+        className="bg-secondary/80   md:w-[33rem] px-8 py-10 gap-5 md:gap-8 flex flex-col rounded-[1rem] border border-primary-light"
       >
         <div className="flex justify-between w-full">
           <h1 className="text-3xl font-semibold text-white">LogIn/SignUp</h1>

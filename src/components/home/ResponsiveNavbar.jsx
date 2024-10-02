@@ -9,7 +9,7 @@ const ResponsiveNavBar = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const { movies } = useMovie();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
 
   const [searchText, setSearchText] = useState("");
@@ -105,12 +105,25 @@ const ResponsiveNavBar = () => {
               </div>
             </div>
             {user?.email ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-2 items-center">
                 <img
                   src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
-                  className="h-8 cursor-pointer w-8 rounded-full"
+                  className="h-10 cursor-pointer w-10 rounded-full"
                 />
-                <h1>{user?.email}</h1>
+                <div className="flex flex-col gap-1 ">
+                  <h1 className="text-sm text-black font-semibold">
+                    {user?.email}
+                  </h1>
+                  <div
+                    onClick={() => {
+                      setUser({});
+                      navigate("/");
+                    }}
+                    className="text-sm bg-primary text-white border py-1 rounded-md  text-center w-24"
+                  >
+                    LogOut
+                  </div>
+                </div>
               </div>
             ) : (
               <button
