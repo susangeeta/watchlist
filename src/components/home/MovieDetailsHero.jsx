@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
-import Header from "./Header";
-import ResponsiveNavBar from "./ResponsiveNavbar";
 
 const MovieDetailsHero = () => {
   const { id } = useParams();
@@ -9,7 +8,6 @@ const MovieDetailsHero = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch movie details using the ID
     const fetchMovieDetails = async () => {
       setLoading(true);
       const response = await fetch(
@@ -26,62 +24,96 @@ const MovieDetailsHero = () => {
   console.log(movieDetails);
 
   return (
-    <div className="w-full overflow-hidden">
-      <Header />
-      <ResponsiveNavBar />
-      <div>
-        {loading ? (
-          <div className="h-[28rem] lg:h-[35rem] w-full animate-pulse bg-slate-500 flex items-center justify-center">
-            <h1 className="text-primary text-3xl font-semibold">
-              Data Loading.....
-            </h1>
-          </div>
-        ) : (
-          <section className="h-[28rem] lg:h-[35rem] w-full">
-            <div
-              className="flex h-full w-full bg-no-repeat object-contain bg-cover relative"
-              style={{
-                backgroundImage: `url(${
-                  movieDetails.Poster !== "N/A"
-                    ? movieDetails.Poster
-                    : "https://lumiere-a.akamaihd.net/v1/images/p_encanto_homeent_22359_4892ae1c.jpeg"
-                })`,
-              }}
-            >
-              <div className="z-10 absolute inset-0 w-full h-full bg-gradient-to-r from-black/95 via-black/60 to-black/10 bg-blend-overlay"></div>
-              <div className="grid  md:grid-cols-2 custom-container z-20">
-                <div className="flex flex-col gap-2  lg:gap-3 md:gap-3 justify-center p-4 md:p-0">
-                  <div className="flex items-center gap-2 text-white mb-2">
-                    <div className="px-2 py-1 bg-primary w-fit rounded-md">
-                      {movieDetails?.imdbRating !== "N/A"
-                        ? movieDetails?.imdbRating
-                        : "4.5"}
+    <div className="w-full bg-secondary overflow-hidden">
+      <div className="w-full h-[calc(100vh-7.8rem)] flex justify-center pt-32 custom-container">
+        <div className="flex gap-6 w-4/5 h-full">
+          {loading ? (
+            <div className="w-full h-full flex items-center justify-center text-2xl font-semibold text-white">
+              Loading please wait...
+            </div>
+          ) : (
+            <>
+              <div className="rounded-lg border-4 sticky top-0 border-white/30 w-[26rem] h-[32rem] overflow-hidden">
+                <img
+                  src={movieDetails?.Poster}
+                  alt="poster"
+                  className="rounded-md w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-[calc(100%-16rem)] h-full overflow-y-scroll pb-10 hide-scrollbar text-white flex flex-col gap-3">
+                <h1 className="text-3xl font-semibold">
+                  {movieDetails?.Title}
+                </h1>
+                <div className="flex items-center gap-1.5">
+                  {Array.from({ length: 5 }).map((elm, i) => (
+                    <div className="text-yellow-500" key={i}>
+                      {movieDetails?.imdbRating / 2 < i ? (
+                        <FaRegStar />
+                      ) : (
+                        <FaStar />
+                      )}
                     </div>
-                    <p>On IMDb</p>
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-5 text-sm font-light text-white/60">
+                  <p>{movieDetails?.Year}</p>
+                  <div className="w-[2px] h-4 bg-white/60"></div>
+                  <p>{movieDetails?.Runtime}</p>
+                  <div className="w-[2px] h-4 bg-white/60"></div>
+                  <p>{movieDetails?.Rated}</p>
+                  <div className="w-[2px] h-4 bg-white/60"></div>
+                  <p>{movieDetails?.Genre}</p>
+                </div>
+
+                <div className="mt-5 flex flex-col gap-2">
+                  <h2 className="text-2xl text-white/90 font-semibold">
+                    Overview
+                  </h2>
+                  <div className="text-white/80 border-b border-white/30 pb-5">
+                    {movieDetails?.Plot}
                   </div>
-                  <h1 className="text-white/90 font-semibold text-base md:text-2xl">
-                    {movieDetails?.Title}
-                  </h1>
-                  <p className="text-white/90 text-sm md:text-base leading-6">
-                    {movieDetails?.Plot !== "N/A"
-                      ? movieDetails?.Plot
-                      : "Lang Lang Plays Disney showcases pianist Lang Lang’s brilliant renditions of classic Disney songs. Featuring pieces from The Lion King, Beauty and the Beast, and Frozen, the album blends his expert technique with the magic of Disney"}
-                  </p>
-                  <div className="flex items-center gap-3 mt-2 lg:mt-3">
-                    <button className="bg-white font-medium py-2 rounded-md w-fit px-4">
-                      Add to wishlist
-                    </button>
-                    <button className="bg-secondary text-white border border-slate-500 font-medium py-2 rounded-md w-fit px-4">
-                      {movieDetails?.Year !== "N/A"
-                        ? movieDetails?.Year
-                        : " 2024"}
-                    </button>
+
+                  <div className="flex gap-12 text-sm">
+                    <div className="flex flex-col gap-2">
+                      <p className="text-white/70">Directed By</p>
+                      <p className="text-white/70">Written By</p>
+                      <p className="text-white/70">Actors</p>
+                      <p className="text-white/70">Language</p>
+                      <p className="text-white/70">Country</p>
+                      <p className="text-white/70">Awards</p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <p>{movieDetails?.Director}</p>
+                      <p>{movieDetails?.Writer}</p>
+                      <p>{movieDetails?.Actors}</p>
+                      <p>{movieDetails?.Language}</p>
+                      <p>{movieDetails?.Country}</p>
+                      <p>{movieDetails?.Awards}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex flex-col gap-2">
+                  <h2 className="text-lg text-white/90 font-semibold">
+                    Ratings
+                  </h2>
+                  <div className="flex items-center gap-10">
+                    {movieDetails?.Ratings?.map((elm) => (
+                      <div key={elm?.Source}>
+                        <p className="text-lg text-orange-500 font-semibold">
+                          {elm?.Value}
+                        </p>
+                        <p className="text-xs text-white/60">{elm?.Source}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

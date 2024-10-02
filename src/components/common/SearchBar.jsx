@@ -1,20 +1,20 @@
-import { useDeferredValue, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "../../hooks";
 
 // eslint-disable-next-line react/prop-types
-const SearchBar = ({ searchText }) => {
+const SearchBar = ({ searchText, setSearchText }) => {
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState("movie");
   const navigate = useNavigate();
-
-  const defferedSearch = useDeferredValue(searchText);
+  const debouncedSearch = useDebounce(searchText, 300);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       const response = await fetch(
-        `https://omdbapi.com/?apikey=36e67ebf&s=${defferedSearch}&type=${type}&page=1}`
+        `https://omdbapi.com/?apikey=36e67ebf&s=${debouncedSearch}&type=${type}&page=1`
       );
       const result = await response.json();
       setLoading(false);
@@ -25,7 +25,7 @@ const SearchBar = ({ searchText }) => {
         setSearchData([]);
       }
     })();
-  }, [defferedSearch, type]);
+  }, [debouncedSearch, type]);
 
   const dataType = useMemo(() => {
     return [
@@ -75,7 +75,10 @@ const SearchBar = ({ searchText }) => {
         <div className="flex flex-col gap-3 p-2">
           {searchData.map((data) => (
             <div
-              onClick={() => navigate(`/details/${data.imdbID}`)}
+              onClick={() => {
+                navigate(`/details/${data.imdbID}`);
+                setSearchText("");
+              }}
               key={data?.Title}
               className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >

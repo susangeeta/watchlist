@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts";
-import Modal from "./LogInModal";
 import SearchBar from "../common/SearchBar";
-import { RxCross2 } from "react-icons/rx";
+import Modal from "./LogInModal";
 
 const ResponsiveNavBar = () => {
   const [open, setOpen] = useState(false);
@@ -108,7 +107,7 @@ const ResponsiveNavBar = () => {
             ) : (
               <button
                 onClick={() => setOpenModal(true)}
-                className="bg-primary px-4 py-2 rounded-3xl text-white text-sm"
+                className="bg-primary px-4 w-36 py-2 rounded-md  md:rounded-3xl text-white text-sm"
               >
                 Get started
               </button>
