@@ -22,11 +22,9 @@ const MovieDetailsHero = () => {
     fetchMovieDetails();
   }, [id]);
 
-  console.log(movieDetails);
-
   return (
     <div className="w-full bg-secondary overflow-hidden">
-      <div className="w-full md:h-[calc(100vh-7.8rem)] flex justify-center pt-20  md:pt-32 custom-container">
+      <div className="w-full md:h-[calc(100vh-3rem)] flex justify-center pt-20  md:pt-32 custom-container">
         <div className="flex flex-col md:flex-row gap-6 w-full p-4 md:w-4/5 h-full">
           {loading ? (
             <div className="w-full h-full flex items-center justify-center text-2xl font-semibold text-white">
