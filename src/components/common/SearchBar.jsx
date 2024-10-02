@@ -1,11 +1,12 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const SearchBar = ({ searchText }) => {
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState("movie");
+  const navigate = useNavigate();
 
   const defferedSearch = useDeferredValue(searchText);
 
@@ -74,25 +75,24 @@ const SearchBar = ({ searchText }) => {
         <div className="flex flex-col gap-3 p-2">
           {searchData.map((data) => (
             <div
+              onClick={() => navigate(`details/${data.imdbID}`)}
               key={data?.Title}
               className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >
-              <Link href={`details/${data.imdbID}`} className="flex gap-3">
-                <div>
-                  <img
-                    src={data?.Poster}
-                    alt="Poster"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                </div>
+              <div>
+                <img
+                  src={data?.Poster}
+                  alt="Poster"
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+              </div>
 
-                <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
-                  <p className="font-medium text-sm">{data?.Title}</p>
-                  <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
-                    {data?.Year}
-                  </div>
+              <div className="text-white w-[calc(100%-6rem)] flex flex-col gap-1">
+                <p className="font-medium text-sm">{data?.Title}</p>
+                <div className="bg-primary px-2 rounded-md py-1 text-xs w-fit">
+                  {data?.Year}
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>
