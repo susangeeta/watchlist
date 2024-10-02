@@ -29,8 +29,11 @@ const Header = () => {
       <div className="custom-container">
         <div className="grid grid-cols-10 w-full items-center">
           {" "}
-          <h1 className="text-white/90 cursor-pointer italic text-3xl font-semibold col-span-3">
-            <a href="/">WatchList</a>
+          <h1
+            onClick={() => navigate("/")}
+            className="text-white/90 cursor-pointer italic text-3xl font-semibold col-span-3"
+          >
+            WatchList
           </h1>
           <div className=" flex flex-col items-center justify-center col-span-4 relative">
             <input

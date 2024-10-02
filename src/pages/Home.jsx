@@ -127,7 +127,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <div className="pt-16 bg-secondary">
+      <div className=" py-4 lg:py-12 bg-secondary">
         <MovieSlider
           heading={"Top Rated Movies"}
           page={topRatedMoviePage}
@@ -135,7 +135,16 @@ const Home = () => {
           settings={topRatedMovieSliderSetting}
         />
       </div>
-      <div className="py-12 bg-secondary">
+      <div className=" pb-4 lg:pb-8 bg-secondary">
+        <MovieSlider
+          heading={"Top Rated Series"}
+          page={topRatedSeriesPage}
+          setPage={setTopRatedSeriesPage}
+          settings={topRatedSeriesSliderSetting}
+        />
+      </div>
+
+      <div className="pb-4 lg:pb-8 bg-secondary">
         <MovieSlider
           heading={"Top Rated Series"}
           page={topRatedSeriesPage}

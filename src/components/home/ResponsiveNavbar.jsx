@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts";
 import Modal from "./LogInModal";
 
 const ResponsiveNavBar = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const { search } = useLocation();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -18,8 +20,11 @@ const ResponsiveNavBar = () => {
             onClick={() => setOpen(true)}
             className="text-white text-xl"
           />
-          <h1 className="text-white italic text-base font-semibold col-span-3">
-            <a href="/">WatchList</a>
+          <h1
+            onClick={() => navigate("/")}
+            className="text-white italic text-base font-semibold col-span-3"
+          >
+            WatchList
           </h1>
         </div>
 
@@ -40,12 +45,12 @@ const ResponsiveNavBar = () => {
       >
         <div className="scrollBarNone py flex h-full w-full flex-col gap-2 overflow-scroll bg-white p-3">
           <div className="z-[200] flex w-full justify-between bg-white">
-            <a href="/">
-              <h1 className="text-black  text-xl font-semibold">
-                {" "}
-                <a href="/">WatchList</a>
-              </h1>
-            </a>
+            <h1
+              onClick={() => navigate("/")}
+              className="text-black  text-xl font-semibold"
+            >
+              WatchList
+            </h1>
             <div className="flex gap-1 lg:order-2">
               <div onClick={() => setOpen(false)} className="">
                 X
@@ -55,44 +60,41 @@ const ResponsiveNavBar = () => {
 
           <div className="flex flex-col gap-3">
             <div className="px-1 flex flex-col gap-2">
-              <a href="/">
-                <h2
-                  className={`text-black cursor-pointer text-sm ${
-                    location.pathname === "/" ? "font-semibold" : "font-light"
-                  }`}
-                >
-                  Home
-                </h2>
-              </a>
-              <a href="my-list">
-                <h2
-                  className={`text-black cursor-pointer text-sm ${
-                    location.pathname === "/my-list"
-                      ? "font-semibold"
-                      : "font-light"
-                  }`}
-                >
-                  My List
-                </h2>
-              </a>
+              <h2
+                onClick={() => navigate("/")}
+                className={`text-black cursor-pointer text-sm ${
+                  location.pathname === "/" ? "font-semibold" : "font-light"
+                }`}
+              >
+                Home
+              </h2>
+
+              <h2
+                onClick={() => navigate("my-list")}
+                className={`text-black cursor-pointer text-sm ${
+                  location.pathname === "/my-list"
+                    ? "font-semibold"
+                    : "font-light"
+                }`}
+              >
+                My List
+              </h2>
             </div>
-            <div>
-              {search ? (
-                <div className="">
-                  <img
-                    src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
-                    className="h-8 cursor-pointer w-8 rounded-full"
-                  />
-                </div>
-              ) : (
-                <button
-                  onClick={() => setOpenModal(true)}
-                  className="bg-primary px-4 py-2 rounded-md text-white text-sm"
-                >
-                  Get started
-                </button>
-              )}
-            </div>
+            {user?.email ? (
+              <div className="">
+                <img
+                  src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
+                  className="h-8 cursor-pointer w-8 rounded-full"
+                />
+              </div>
+            ) : (
+              <button
+                onClick={() => setOpenModal(true)}
+                className="bg-primary px-4 py-2 rounded-3xl text-white text-sm"
+              >
+                Get started
+              </button>
+            )}
           </div>
         </div>
       </div>

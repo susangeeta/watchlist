@@ -23,7 +23,7 @@ const MovieCard = ({ item }) => {
 
   return (
     <div className="w-full">
-      <div className="!h-64 relative !w-11/12 group rounded-xl cursor-pointer !overflow-hidden">
+      <div className=" h-44 lg:!h-64 relative !w-11/12 group rounded-xl cursor-pointer !overflow-hidden">
         <img
           src={
             item.Poster !== "N/A"
