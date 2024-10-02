@@ -14,7 +14,6 @@ const MovieCard = ({ item }) => {
     const isMovieExist = movies.some((elm) => elm.imdbID === item.imdbID);
     if (isMovieExist) {
       const filterdMovies = movies.filter((elm) => elm.imdbID !== id);
-      console.log(filterdMovies, "filterdMovies");
       updateBulkMovieDetails(filterdMovies);
     } else {
       updateMovieDetails(item);
@@ -35,7 +34,7 @@ const MovieCard = ({ item }) => {
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <h2
             className="text-white font-semibold text-base"
-            onClick={() => navigate(`details/${item.imdbID}`)}
+            onClick={() => navigate(`/details/${item.imdbID}#`)}
           >
             View Details
           </h2>
