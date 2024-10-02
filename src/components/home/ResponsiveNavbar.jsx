@@ -86,23 +86,25 @@ const ResponsiveNavBar = () => {
                 Home
               </h2>
 
-              <div className="relative">
-                <h2
-                  onClick={() => navigate("my-list")}
-                  className={`text-black cursor-pointer text-sm ${
-                    location.pathname === "/my-list"
-                      ? "font-semibold"
-                      : "font-light"
-                  }`}
-                >
-                  My List
-                </h2>
-                {movies.length > 0 && (
-                  <div className="rounded-full h-4 w-4 flex items-center justify-center bg-primary absolute -top-3 left-10">
-                    <h1 className="text-white text-xs">{movies.length}</h1>
-                  </div>
-                )}
-              </div>
+              {user?.email && (
+                <div className="relative">
+                  <h2
+                    onClick={() => navigate("my-list")}
+                    className={`text-black cursor-pointer text-sm ${
+                      location.pathname === "/my-list"
+                        ? "font-semibold"
+                        : "font-light"
+                    }`}
+                  >
+                    My List
+                  </h2>
+                  {movies.length > 0 && (
+                    <div className="rounded-full h-4 w-4 flex items-center justify-center bg-primary absolute -top-3 left-10">
+                      <h1 className="text-white text-xs">{movies.length}</h1>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             {user?.email ? (
               <div className="flex gap-2 items-center">
