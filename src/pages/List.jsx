@@ -1,7 +1,7 @@
 import Lottie from "react-lottie";
 import { animationError } from "../assets/lottie";
 import { MovieCard } from "../components/common";
-import { Header, ResponsiveNavBar } from "../components/home";
+import { Footer, Header, ResponsiveNavBar } from "../components/home";
 import { useMovie } from "../contexts";
 
 const defaultOptions = {
@@ -24,8 +24,8 @@ const List = () => {
           <div className="w-full h-full items-center justify-center">
             <Lottie
               options={defaultOptions}
-              height={550}
-              width={450}
+              height={650}
+              width={650}
               className="object-cover"
             />
           </div>
@@ -38,6 +38,8 @@ const List = () => {
           ))}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
