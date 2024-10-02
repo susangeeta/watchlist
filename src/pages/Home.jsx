@@ -133,6 +133,7 @@ const Home = () => {
           page={topRatedMoviePage}
           setPage={setTopRatedMoviePage}
           settings={topRatedMovieSliderSetting}
+          type={"movie"}
         />
       </div>
       <div className=" pb-4 lg:pb-8 bg-secondary">
@@ -141,15 +142,7 @@ const Home = () => {
           page={topRatedSeriesPage}
           setPage={setTopRatedSeriesPage}
           settings={topRatedSeriesSliderSetting}
-        />
-      </div>
-
-      <div className="pb-4 lg:pb-8 bg-secondary">
-        <MovieSlider
-          heading={"Top Rated Series"}
-          page={topRatedSeriesPage}
-          setPage={setTopRatedSeriesPage}
-          settings={topRatedSeriesSliderSetting}
+          type={"series"}
         />
       </div>
       <Footer />

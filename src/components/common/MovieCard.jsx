@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { CiBookmark } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth, useMovie } from "../../contexts";
 
 const MovieCard = ({ item }) => {
+  const { pathname } = useLocation();
   const { updateBulkMovieDetails, movies, updateMovieDetails } = useMovie();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const MovieCard = ({ item }) => {
 
   return (
     <div className="w-full">
-      <div className=" h-44 lg:!h-64 relative !w-11/12 group rounded-xl cursor-pointer !overflow-hidden">
+      <div className=" h-44 lg:!h-64 relative !w-11/12 group rounded-xl !overflow-hidden">
         <img
           src={
             item.Poster !== "N/A"
@@ -31,14 +32,22 @@ const MovieCard = ({ item }) => {
           }
           className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-110"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <h2
-            className="text-white font-semibold text-base"
-            onClick={() => navigate(`/details/${item.imdbID}#`)}
-          >
-            View Details
-          </h2>
-        </div>
+
+        {pathname !== `/details/${item.imdbID}` ? (
+          <>
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <h2
+                className={`text-white cursor-pointer font-semibold text-base`}
+                onClick={() => navigate(`/details/${item.imdbID}#`)}
+              >
+                View Details
+              </h2>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+
         {user?.email &&
           (isMovieExist ? (
             <div

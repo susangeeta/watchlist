@@ -1,6 +1,6 @@
-export const fetchSliderMovies = async (page) => {
+export const fetchSliderMovies = async (page, type) => {
   const response = await fetch(
-    `https://omdbapi.com/?apikey=36e67ebf&s=disney&type=movie&page=${page}`
+    `https://omdbapi.com/?apikey=36e67ebf&s=marvel&type=${type}&page=${page}`
   );
   const result = await response.json();
   return result;

@@ -6,7 +6,7 @@ import { fetchSliderMovies } from "../../utils";
 import { Skeleton } from "../common";
 import MovieCard from "../common/MovieCard";
 
-const MovieSlider = ({ heading, page, setPage, settings }) => {
+const MovieSlider = ({ heading, page, setPage, settings, type }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef(null);
@@ -14,13 +14,13 @@ const MovieSlider = ({ heading, page, setPage, settings }) => {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const result = await fetchSliderMovies(page);
+      const result = await fetchSliderMovies(page, type);
       setLoading(false);
       if (result?.Response && result?.Search) {
         setData(result.Search);
       }
     })();
-  }, [page]);
+  }, [page, type]);
 
   return (
     <div className="flex items-center gap-8 flex-col justify-center">

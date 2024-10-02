@@ -8,13 +8,15 @@ export const MovieProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
 
   const updateMovieDetails = (details) => {
-    if (!movies.find((elm) => elm.imdbID === details.imdbID))
-      setMovies((prev) => [...prev, details]);
+    setMovies((prev) => {
+      if (!prev.some((movie) => movie.imdbID === details.imdbID)) {
+        return [...prev, details];
+      }
+      return prev;
+    });
   };
 
-  const updateBulkMovieDetails = (details) => {
-    setMovies(details);
-  };
+  const updateBulkMovieDetails = setMovies;
 
   const contextValue = useMemo(
     () => ({
@@ -35,7 +37,7 @@ export const MovieProvider = ({ children }) => {
 export const useMovie = () => {
   const context = useContext(MovieContext);
   if (context === undefined) {
-    throw new Error("useAuth must be used within an MovieProvider");
+    throw new Error("useMovie must be used within a MovieProvider");
   }
   return context;
 };
