@@ -23,6 +23,15 @@ body {
   }
 }
 
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .hero-overlay {
   background-image: linear-gradient(
     360deg,
