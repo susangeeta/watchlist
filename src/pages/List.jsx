@@ -21,7 +21,7 @@ const List = () => {
     <div className="w-full bg-secondary min-h-screen">
       <Header />
       <ResponsiveNavBar />
-      <div className="w-full custom-container pt-32 flex flex-col h-[calc(100vh-8rem)] overflow-y-scroll hide-scrollbar gap-3">
+      <div className="w-full custom-container pt-20 md:pt-32 flex flex-col h-[calc(100vh-8rem)] overflow-y-scroll hide-scrollbar gap-3">
         <div className="flex items-center gap-3 p-3">
           {dataType.map((elm) => (
             <div

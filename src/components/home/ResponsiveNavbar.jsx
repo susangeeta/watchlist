@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts";
+import { useAuth, useMovie } from "../../contexts";
 import SearchBar from "../common/SearchBar";
 import Modal from "./LogInModal";
 
 const ResponsiveNavBar = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const { movies } = useMovie();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -85,16 +86,23 @@ const ResponsiveNavBar = () => {
                 Home
               </h2>
 
-              <h2
-                onClick={() => navigate("my-list")}
-                className={`text-black cursor-pointer text-sm ${
-                  location.pathname === "/my-list"
-                    ? "font-semibold"
-                    : "font-light"
-                }`}
-              >
-                My List
-              </h2>
+              <div className="relative">
+                <h2
+                  onClick={() => navigate("my-list")}
+                  className={`text-black cursor-pointer text-sm ${
+                    location.pathname === "/my-list"
+                      ? "font-semibold"
+                      : "font-light"
+                  }`}
+                >
+                  My List
+                </h2>
+                {movies.length > 0 && (
+                  <div className="rounded-full h-4 w-4 flex items-center justify-center bg-primary absolute -top-3 left-10">
+                    <h1 className="text-white text-xs">{movies.length}</h1>
+                  </div>
+                )}
+              </div>
             </div>
             {user?.email ? (
               <div className="flex gap-3 items-center">
@@ -106,7 +114,10 @@ const ResponsiveNavBar = () => {
               </div>
             ) : (
               <button
-                onClick={() => setOpenModal(true)}
+                onClick={() => {
+                  setOpenModal(true);
+                  setOpen(false);
+                }}
                 className="bg-primary px-4 w-36 py-2 rounded-md  md:rounded-3xl text-white text-sm"
               >
                 Get started

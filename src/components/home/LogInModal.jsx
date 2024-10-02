@@ -27,13 +27,13 @@ const Modal = ({ setOpenModal }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-secondary/80 w-[33rem] px-8 py-10 gap-12 flex flex-col rounded-[1rem] border border-primary-light"
+        className="bg-secondary/80   md:w-[33rem] px-8 py-10 gap-5 md:gap-12 flex flex-col rounded-[1rem] border border-primary-light"
       >
         <div className="flex justify-between w-full">
           <h1 className="text-3xl font-semibold text-white">LogIn/SignUp</h1>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-5 flex-col">
-          <div className="flex gap-3 flex-col">
+          <div className="flex gap-1 md:gap-3 flex-col">
             <h1 className="text-white">Email address *</h1>
             <input
               placeholder="Enter your email..."
