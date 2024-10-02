@@ -24,7 +24,7 @@ const MovieDetailsHero = () => {
 
   return (
     <div className="w-full bg-secondary overflow-hidden">
-      <div className="w-full md:h-[calc(100vh-3rem)] flex justify-center pt-20  md:pt-32 custom-container">
+      <div className="w-full md:h-[calc(100vh-7.8rem)] flex justify-center pt-20  md:pt-32 custom-container">
         <div className="flex flex-col md:flex-row gap-6 w-full p-4 md:w-4/5 h-full">
           {loading ? (
             <div className="w-full h-full flex items-center justify-center text-2xl font-semibold text-white">
@@ -32,7 +32,7 @@ const MovieDetailsHero = () => {
             </div>
           ) : (
             <>
-              <div className="rounded-lg border-4 sticky top-0 border-white/30 w-full  md:w-[26rem] h-96 md:h-[32rem] overflow-hidden">
+              <div className="rounded-lg border-4 sticky top-0 border-white/30 w-full  md:w-[26rem] h-96 md:h-[28rem] overflow-hidden">
                 <img
                   src={
                     movieDetails?.Poster !== "N/A"

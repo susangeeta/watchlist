@@ -31,9 +31,9 @@ const Home = () => {
         {
           breakpoint: 1280,
           settings: {
-            autoplay: true,
+            autoplay: false,
             autoplaySpeed: 3000,
-            slidesToShow: 3,
+            slidesToShow: 6,
             slidesToScroll: 1,
             infinite: true,
             arrows: false,
@@ -90,9 +90,9 @@ const Home = () => {
         {
           breakpoint: 1280,
           settings: {
-            autoplay: true,
+            autoplay: false,
             autoplaySpeed: 3000,
-            slidesToShow: 3,
+            slidesToShow: 6,
             slidesToScroll: 1,
             infinite: true,
             arrows: false,
