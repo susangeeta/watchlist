@@ -52,14 +52,14 @@ const MovieCard = ({ item }) => {
           (isMovieExist ? (
             <div
               onClick={() => handleListSession(item.imdbID)}
-              className="bg-white hover:text-primary absolute rounded-full top-3 right-3 text-primary h-8 w-8 flex items-center justify-center  "
+              className="bg-white cursor-pointer hover:text-primary absolute rounded-full top-3 right-3 text-primary h-8 w-8 flex items-center justify-center  "
             >
               <MdDelete className="text-xl" />
             </div>
           ) : (
             <div
               onClick={() => handleListSession(item.imdbID)}
-              className="bg-primary hover:bg-white hover:text-primary absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  "
+              className="bg-primary cursor-pointer hover:bg-white hover:text-primary absolute rounded-full top-3 right-3 text-white h-8 w-8 flex items-center justify-center  "
             >
               <CiBookmark className="text-xl" />
             </div>

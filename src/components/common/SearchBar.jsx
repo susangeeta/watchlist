@@ -75,7 +75,7 @@ const SearchBar = ({ searchText }) => {
         <div className="flex flex-col gap-3 p-2">
           {searchData.map((data) => (
             <div
-              onClick={() => navigate(`details/${data.imdbID}`)}
+              onClick={() => navigate(`/details/${data.imdbID}`)}
               key={data?.Title}
               className="flex gap-3   bg-secondary/40 rounded-md p-3 cursor-pointer"
             >
