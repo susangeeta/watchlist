@@ -2,6 +2,7 @@
 import { CiBookmark } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom";
+import { defaultImage } from "../../assets";
 import { useAuth, useMovie } from "../../contexts";
 
 const MovieCard = ({ item }) => {
@@ -26,9 +27,7 @@ const MovieCard = ({ item }) => {
       <div className=" h-44 lg:!h-64 relative !w-11/12 group rounded-xl !overflow-hidden">
         <img
           src={
-            item.Poster !== "N/A"
-              ? item.Poster
-              : "https://lumiere-a.akamaihd.net/v1/images/p_encanto_homeent_22359_4892ae1c.jpeg" // Default image
+            item.Poster !== "N/A" ? item.Poster : defaultImage // Default image
           }
           className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-110"
         />

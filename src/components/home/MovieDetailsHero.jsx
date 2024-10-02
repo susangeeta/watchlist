@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
+import { defaultImage } from "../../assets";
 
 const MovieDetailsHero = () => {
   const { id } = useParams();
@@ -25,23 +26,27 @@ const MovieDetailsHero = () => {
 
   return (
     <div className="w-full bg-secondary overflow-hidden">
-      <div className="w-full h-[calc(100vh-7.8rem)] flex justify-center pt-32 custom-container">
-        <div className="flex gap-6 w-4/5 h-full">
+      <div className="w-full md:h-[calc(100vh-7.8rem)] flex justify-center pt-20  md:pt-32 custom-container">
+        <div className="flex flex-col md:flex-row gap-6 w-full p-4 md:w-4/5 h-full">
           {loading ? (
             <div className="w-full h-full flex items-center justify-center text-2xl font-semibold text-white">
               Loading please wait...
             </div>
           ) : (
             <>
-              <div className="rounded-lg border-4 sticky top-0 border-white/30 w-[26rem] h-[32rem] overflow-hidden">
+              <div className="rounded-lg border-4 sticky top-0 border-white/30 w-full  md:w-[26rem] h-96 md:h-[32rem] overflow-hidden">
                 <img
-                  src={movieDetails?.Poster}
+                  src={
+                    movieDetails?.Poster !== "N/A"
+                      ? movieDetails?.Poster
+                      : defaultImage
+                  }
                   alt="poster"
                   className="rounded-md w-full h-full object-cover"
                 />
               </div>
-              <div className="w-[calc(100%-16rem)] h-full overflow-y-scroll pb-10 hide-scrollbar text-white flex flex-col gap-3">
-                <h1 className="text-3xl font-semibold">
+              <div className="w-full md:w-[calc(100%-16rem)] h-full md:overflow-y-scroll pb-10 hide-scrollbar text-white flex flex-col gap-3">
+                <h1 className=" text-xl md:text-3xl font-semibold">
                   {movieDetails?.Title}
                 </h1>
                 <div className="flex items-center gap-1.5">
@@ -56,7 +61,7 @@ const MovieDetailsHero = () => {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-5 text-sm font-light text-white/60">
+                <div className="flex items-center whitespace-nowrap gap-2 md:gap-5 text-sm font-light text-white/60">
                   <p>{movieDetails?.Year}</p>
                   <div className="w-[2px] h-4 bg-white/60"></div>
                   <p>{movieDetails?.Runtime}</p>
@@ -66,8 +71,8 @@ const MovieDetailsHero = () => {
                   <p>{movieDetails?.Genre}</p>
                 </div>
 
-                <div className="mt-5 flex flex-col gap-2">
-                  <h2 className="text-2xl text-white/90 font-semibold">
+                <div className=" mt-2 md:mt-5 flex flex-col gap-2">
+                  <h2 className=" text-xl md:text-2xl text-white/90 font-semibold">
                     Overview
                   </h2>
                   <div className="text-white/80 border-b border-white/30 pb-5">

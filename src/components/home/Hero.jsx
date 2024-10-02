@@ -1,5 +1,11 @@
 import { useMemo } from "react";
 import Slider from "react-slick";
+import {
+  herosection1,
+  herosection2,
+  herosection3,
+  herosection4,
+} from "../../assets";
 import Header from "./Header";
 import ResponsiveNavBar from "./ResponsiveNavbar";
 
@@ -8,8 +14,7 @@ const Hero = () => {
     () => [
       {
         id: 1,
-        image:
-          "https://nowtoronto.com/wp-content/uploads/2024/01/lang-lang-plays-disney.png",
+        image: herosection1,
         title: "Lang Lang Plays Disney",
         type: "movie",
         rating: "4.5",
@@ -21,8 +26,7 @@ const Hero = () => {
       {
         id: 1,
         title: "Deadpool The Musical 2 - Ultimate Disney Parody",
-        image:
-          "https://w0.peakpx.com/wallpaper/201/308/HD-wallpaper-deadpool-superheros-battle-2018-movie-deadpool-2.jpg",
+        image: herosection2,
         type: "movie",
         rating: "4.5",
         sub: `Deadpool The Musical 2 - Ultimate Disney Parody is a hilarious
@@ -32,8 +36,7 @@ const Hero = () => {
       {
         id: 1,
         title: "A Disney Channel Christmas!!!!",
-        image:
-          "https://preview.redd.it/since-disney-channel-obviously-doesnt-care-anymore-ill-v0-o5jwtojzz28c1.jpg?width=1080&crop=smart&auto=webp&s=1ee72fcb23c04913c21244e9695967bdedf1f231",
+        image: herosection3,
         type: "movie",
         rating: "4.5",
         sub: `A Disney Channel Christmas!!!! is a festive holiday special featuring
@@ -42,8 +45,7 @@ const Hero = () => {
       {
         id: 1,
         title: "The Disney Family Singalong Volume 2",
-        image:
-          "https://cdn1.edgedatg.com/aws/v2/abc/ABCUpdates/blog/3336870/a9f76e504f03b9e35827a9d1ceeffca1/512x288-Q90_a9f76e504f03b9e35827a9d1ceeffca1.jpg",
+        image: herosection4,
         type: "movie",
         rating: "4.5",
         sub: `The Disney Family Singalong Volume 2 is a joyful musical event where
