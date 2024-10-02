@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
+import { avatra } from "../../assets";
 import { useAuth, useMovie } from "../../contexts";
 import { useScrollPosition } from "../../hooks";
 import SearchBar from "../common/SearchBar";
@@ -96,16 +97,19 @@ const Header = () => {
             {user?.email ? (
               <div className="flex items-center gap-3 relative">
                 <img
-                  src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
+                  src={avatra}
                   className="h-8 cursor-pointer w-8 rounded-full"
                   onClick={handleUserModalToggle}
                 />
 
                 {userModal && (
-                  <div className="absolute right-0 top-16 w-56 bg-white rounded-lg shadow-lg py-2 z-50">
+                  <div
+                    onClick={() => setUserModal(false)}
+                    className="absolute right-0 top-16 w-56 bg-white rounded-lg shadow-lg py-2"
+                  >
                     <div className="p-2 flex items-center gap-3">
                       <img
-                        src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.1499357945.1723107809&semt=ais_hybrid"
+                        src={avatra}
                         className="h-8 cursor-pointer w-8 rounded-full"
                       />
                       <h1 className="text-sm font-semibold truncate w-full">

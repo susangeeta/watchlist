@@ -1,3 +1,4 @@
+export { default as avatra } from "./avatra.png";
 export { default as defaultImage } from "./default-image.png";
 export { default as herosection1 } from "./hero-section-1.png";
 export { default as herosection2 } from "./hero-section-2.jpg";
